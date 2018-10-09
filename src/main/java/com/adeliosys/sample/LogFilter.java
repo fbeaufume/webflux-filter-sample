@@ -7,9 +7,6 @@ import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.WebFilter;
 import org.springframework.web.server.WebFilterChain;
 import reactor.core.publisher.Mono;
-import reactor.util.context.Context;
-
-import java.util.UUID;
 
 @Component
 public class LogFilter implements WebFilter {
@@ -18,18 +15,14 @@ public class LogFilter implements WebFilter {
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
-        String traceId = UUID.randomUUID().toString();
         long startTime = System.currentTimeMillis();
         String path = exchange.getRequest().getURI().getPath();
-        LOGGER.info("Request [{}] started, traceId [{}]", path, traceId);
+        LOGGER.info("Serving '{}'", path);
 
-        return chain.filter(exchange)
-                .doAfterSuccessOrError((r, t) ->
-                        LOGGER.info("Request [{}] completed, statusCode [{}], time [{}], traceId [{}]",
-                                path,
-                                exchange.getResponse().getStatusCode(),
-                                System.currentTimeMillis() - startTime,
-                                traceId))
-                .subscriberContext(Context.of(String.class, traceId));
+        return chain.filter(exchange).doAfterTerminate(() ->
+                LOGGER.info("Served '{}' as {} in {} msec",
+                        path,
+                        exchange.getResponse().getStatusCode(),
+                        System.currentTimeMillis() - startTime));
     }
 }
