@@ -11,17 +11,17 @@ Bug?
 Run with `mvn spring-boot:run`.
 
 Then connect to various URL and see the HTTP response status from the web filter in the application logs:
-- http://localhost:8080/empty1 : status is null
-- http://localhost:8080/empty2 : status is null
-- http://localhost:8080/empty3 : status is 200
-- http://localhost:8080/empty4 : status is 200
-- http://localhost:8080/hello1 : status is null
-- http://localhost:8080/hello2 : status is null
-- http://localhost:8080/hello3 : status is 200
-- http://localhost:8080/hello4 : status is 200
-- http://localhost:8080/bean1 : status is null
-- http://localhost:8080/bean2 : status is null
-- http://localhost:8080/bean3 : status is 200
-- http://localhost:8080/bean4 : status is 200
-- http://localhost:8080/pause1/1000 : status is null
-- http://localhost:8080/pause2/1000 : status is 200
+- http://localhost:8080/empty1 (returns void): status is null
+- http://localhost:8080/empty2 (returns Mono<Void>): status is null
+- http://localhost:8080/empty3 (returns ResponseEntity<Void>): status is 200
+- http://localhost:8080/empty4 (returns Mono<ResponseEntity<Void>>): status is 200
+- http://localhost:8080/hello1 (returns String): status is null
+- http://localhost:8080/hello2 (returns Mono<String>): status is null
+- http://localhost:8080/hello3 (returns ResponseEntity<String>): status is 200
+- http://localhost:8080/hello4 (returns Mono<ResponseEntity<String>>): status is 200
+- http://localhost:8080/bean1 (returns MyBean): status is null
+- http://localhost:8080/bean2 (returns Mono<MyBean>): status is null
+- http://localhost:8080/bean3 (returns ResponseEntity<MyBean>): status is 200
+- http://localhost:8080/bean4 (returns Mono<ResponseEntity<MyBean>>): status is 200
+- http://localhost:8080/pause1/1000 (returns Mono<String>): status is null
+- http://localhost:8080/pause2/1000 (returns Mono<ResponseEntity<String>>): status is 200
