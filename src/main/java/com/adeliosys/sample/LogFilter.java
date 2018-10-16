@@ -19,10 +19,15 @@ public class LogFilter implements WebFilter {
         String path = exchange.getRequest().getURI().getPath();
         LOGGER.info("Serving '{}'", path);
 
-        return chain.filter(exchange).doAfterTerminate(() ->
-                LOGGER.info("Served '{}' as {} in {} msec",
-                        path,
-                        exchange.getResponse().getStatusCode(),
-                        System.currentTimeMillis() - startTime));
+        return chain.filter(exchange).doAfterTerminate(() -> {
+                    exchange.getResponse().getHeaders().entrySet().forEach(e ->
+                            LOGGER.info("Response header '{}': {}", e.getKey(), e.getValue()));
+
+                    LOGGER.info("Served '{}' as {} in {} msec",
+                            path,
+                            exchange.getResponse().getStatusCode(),
+                            System.currentTimeMillis() - startTime);
+                }
+        );
     }
 }
