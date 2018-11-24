@@ -8,7 +8,7 @@
     <version>1.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>Webflux Filter Sample</name>
+    <name>WebFlux Filter Sample</name>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
