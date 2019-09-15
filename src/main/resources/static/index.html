@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WebFlux Filter Sample</title>
+</head>
+<body>
+<h2>WebFlux Filter Sample</h2>
+<ul>
+    <li><a href="empty1">empty1</a> returns void): status is null</li>
+    <li><a href="empty2">empty2</a> returns Mono&lt;Void&gt;): status is null</li>
+    <li><a href="empty3">empty3</a> returns ResponseEntity&lt;Void&gt;): status is 200</li>
+    <li><a href="empty4">empty4</a> returns Mono&lt;ResponseEntity&lt;Void&gt;&gt;): status is 200</li>
+    <li><a href="hello1">hello1</a> returns String): status is null</li>
+    <li><a href="hello2">hello2</a> returns Mono&lt;String&gt;): status is null</li>
+    <li><a href="hello3">hello3</a> returns ResponseEntity&lt;String&gt;): status is 200</li>
+    <li><a href="hello4">hello4</a> returns Mono&lt;ResponseEntity&lt;String&gt;&gt;): status is 200</li>
+    <li><a href="bean1">bean1</a> returns MyBean): status is null</li>
+    <li><a href="bean2">bean2</a> returns Mono&lt;MyBean&gt;): status is null</li>
+    <li><a href="bean3">bean3</a> returns ResponseEntity&lt;MyBean&gt;): status is 200</li>
+    <li><a href="bean4">bean4</a> returns Mono&lt;ResponseEntity&lt;MyBean&gt;&gt;): status is 200</li>
+    <li><a href="pause1/1000">pause1/1000</a> returns Mono&lt;String&gt;): status is null</li>
+    <li><a href="pause2/1000">pause2/1000</a> returns Mono&lt;ResponseEntity&lt;String&gt;&gt;): status is 200</li>
+</ul>
+</body>
+</html>
