@@ -21,24 +21,24 @@ public class MyController {
     private static final MyBean BEAN = new MyBean("Foo", 42);
 
     // Status code from the web filter is null.
-    @GetMapping("empty1")
+    @GetMapping("/empty1")
     public void empty1() {
     }
 
     // Status code from the web filter is null.
-    @GetMapping("empty2")
+    @GetMapping("/empty2")
     public Mono<Void> empty2() {
         return Mono.empty();
     }
 
     // Status code from the web filter is 200.
-    @GetMapping("empty3")
+    @GetMapping("/empty3")
     public ResponseEntity<Void> empty3() {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     // Status code from the web filter is 200.
-    @GetMapping("empty4")
+    @GetMapping("/empty4")
     public Mono<ResponseEntity<Void>> empty4() {
         return Mono.just(new ResponseEntity<>(HttpStatus.OK));
     }
